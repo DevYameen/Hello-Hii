@@ -71,7 +71,7 @@ const Home = () => {
     catch(e) {
       console.log(e)
       console.log("Socket disconnected")
-      socketConnection.disconnect()
+      SocketConnection.disconnect()
     }
   }, [])
 
