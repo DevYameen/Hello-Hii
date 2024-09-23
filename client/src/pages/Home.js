@@ -41,6 +41,7 @@ const Home = () => {
 
   // WebSocket connection
   useEffect(() => {
+    try{
     const socketConnection = io(process.env.REACT_APP_BACKEND_URL, {
       auth: {
         token: localStorage.getItem('token'),  // Ensure token is valid
@@ -65,9 +66,10 @@ const Home = () => {
 
     // Save socket connection to Redux
     dispatch(setSocketConnection(socketConnection))
-
+  }
     // Clean up on unmount
-    return () => {
+    catch(e) {
+      console.log(e)
       console.log("Socket disconnected")
       socketConnection.disconnect()
     }
