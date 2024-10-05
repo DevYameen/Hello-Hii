@@ -42,11 +42,12 @@ const Home = () => {
 
   /*** Socket.io connection ***/
   useEffect(() => {
-    // Establish socket connection
+    // Establish socket connection with WebSocket and polling transports
     const socketConnection = io(process.env.REACT_APP_BACKEND_URL, {
       auth: {
-        token: localStorage.getItem('token'),
+        token: localStorage.getItem('token'), // Ensure token is valid
       },
+      transports: ['websocket', 'polling'], // Adding polling as a fallback
     });
 
     // Handle online users update
